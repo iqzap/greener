@@ -68,6 +68,16 @@
 
 .mascot-help { --mascot-size: 60px; }
 
+.question-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
 .result-score-visual {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
