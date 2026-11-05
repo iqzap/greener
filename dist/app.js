@@ -1,5 +1,4 @@
 import { categories, questions, isComplete, scores, priorities, level, currentMonth, monthName, seedRecords, validRecord } from './domain.mjs';
-import { gameStats } from './game.mjs';
 import { icon } from './icons.mjs';
 import { questionCopy, nextUnanswered, questionIndex } from './mobile.mjs';
 
@@ -69,9 +68,9 @@ function result(record) {
 function actions(record) {
   const tasks = priorities(record.answers), done = tasks.filter(q=>record.completed.includes(q.id)).length;
   return `${title('Aksi kecil,<br>perubahan baik.',monthName(record.month)+(record.demo?' · contoh':''))}
-    <section class="actions-progress"><div><strong>${done}/${tasks.length} selesai</strong><span>+10 XP per aksi</span></div>${progress(tasks.length?done/tasks.length:1,'Aksi selesai')}</section>
+    <section class="actions-progress"><div><strong>${done}/${tasks.length} selesai</strong></div>${progress(tasks.length?done/tasks.length:1,'Aksi selesai')}</section>
     <div class="action-list">${tasks.length?tasks.map(q=>{const c=categories.find(c=>c.id===q.category),checked=record.completed.includes(q.id);return `<article class="action-item ${checked?'completed':''}" data-action="${q.id}"><label class="task-toggle"><input type="checkbox" data-task="${q.id}" data-month="${record.month}" ${checked?'checked':''} aria-label="Tandai ${questionCopy[q.id][1]} selesai"><span>${icon('check')}</span></label><details class="action-detail" data-detail="${q.id}"><summary><span><strong>${questionCopy[q.id][1]}</strong><small>${c.name}</small></span>${icon('down')}</summary><p>${q.advice}</p></details></article>`;}).join(''):`<div class="empty-state">${icon('checkCircle')}<h2>Semua sudah baik!</h2><p>Pertahankan kebiasaanmu.</p></div>`}</div>
-    <p class="fine-note action-note">Aksi selesai menambah XP.<br>Skor berubah lewat penilaian berikutnya.</p><a class="text-button" href="#hasil/${record.month}">Lihat skor kantor ${icon('arrow')}</a>`;
+    <p class="fine-note action-note">Skor diperbarui lewat penilaian berikutnya.</p><a class="text-button" href="#hasil/${record.month}">Lihat skor kantor ${icon('arrow')}</a>`;
 }
 
 function historyPage() {
@@ -87,7 +86,6 @@ function render() {
   const quiz = page === 'penilaian';
   document.body.classList.toggle('in-quiz',quiz);
   $('#app-header').hidden=quiz; $('#navigation').hidden=quiz;
-  $('#xp-total').innerHTML=`${icon('bolt')}<strong>${gameStats(records).xp} XP</strong>`;
   $('#main').className=quiz?'quiz-page':`page ${page}-page`;
   document.title=`${pages[page]} — Greener`;
   const active=page==='perbaikan'?'perbaikan':page==='riwayat'?'riwayat':'dashboard';
@@ -106,8 +104,8 @@ function goQuestion(index) {
 }
 function celebrate(kind) {
   $('#celebration-title').textContent=kind==='new'?'Misi selesai!':'Misi diperbarui!';
-  $('#celebration-reward').textContent=kind==='new'?'+50 XP':'Tersimpan';
-  $('#celebration-copy').textContent=kind==='new'?'Satu langkah baik hari ini.':'XP bulanan dihitung sekali.';
+  $('#celebration-score').textContent=`${Math.round(scores(latest().answers).total)}/100`;
+  $('#celebration-copy').textContent=kind==='new'?'Ini skor hijau kantor kita.':'Skor hijau sudah diperbarui.';
   $('#confetti').innerHTML=Array.from({length:12},(_,i)=>`<i style="--x:${i*37%100}%;--rot:${i*43}deg;--color:${['#58cc02','#1cb0f6','#ffc800'][i%3]}"></i>`).join('');
   $('#celebration-dialog').showModal();
 }
@@ -157,7 +155,7 @@ document.addEventListener('change',e=>{
     const checked=input.checked,saved=write(STORE,records);render();
     for(const id of expanded)document.querySelector(`[data-detail="${id}"]`)?.setAttribute('open','');
     const replacement=document.querySelector(`[data-task="${input.dataset.task}"]`);replacement?.focus({preventScroll:true});
-    if(saved)toast(checked?'+10 XP · Aksi baik tercatat!':'Status aksi diperbarui.');
+    if(saved)toast(checked?'Aksi baik tercatat!':'Status aksi diperbarui.');
     if(checked&&pointerInput)replacement?.closest('.action-item').classList.add('success-pop');
   }
 });

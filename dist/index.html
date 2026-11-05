@@ -10,12 +10,12 @@
 <body>
   <div class="app-frame">
     <a class="skip" href="#main">Lewati ke konten</a>
-    <header id="app-header"><a class="brand" href="#dashboard" aria-label="Greener, beranda">greener<span>.</span></a><div class="header-actions"><span id="xp-total" class="xp-pill"></span><button class="icon-button" id="about-button" aria-label="Tentang Greener"></button></div></header>
+    <header id="app-header"><a class="brand" href="#dashboard" aria-label="Greener, beranda">greener<span>.</span></a><div class="header-actions"><button class="icon-button" id="about-button" aria-label="Tentang Greener"></button></div></header>
     <main id="main" tabindex="-1"></main>
     <nav id="navigation" aria-label="Navigasi utama"></nav>
   </div>
   <div id="toast" role="status" aria-live="polite"></div>
-  <dialog id="about-dialog" aria-labelledby="about-title"><h2 id="about-title">Tentang demo</h2><p>Data tersimpan di browser ini.</p><p>Skor adalah simulasi, bukan sertifikasi. XP mencatat aktivitas: 50 per penilaian, 10 per aksi selesai.</p><div class="dialog-stack"><button class="btn secondary" id="reset-button">Reset data demo</button><form method="dialog"><button class="btn primary">Mengerti</button></form></div></dialog>
+  <dialog id="about-dialog" aria-labelledby="about-title"><h2 id="about-title">Tentang demo</h2><p>Data tersimpan di browser ini.</p><p>Skor hijau dihitung dari 15 jawaban. Ini simulasi, bukan sertifikasi.</p><div class="dialog-stack"><button class="btn secondary" id="reset-button">Reset data demo</button><form method="dialog"><button class="btn primary">Mengerti</button></form></div></dialog>
   <dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Mulai lagi?</h2><p>Penilaian dan draf akan diganti data contoh.</p><form method="dialog" class="dialog-stack"><button class="btn secondary" value="cancel">Batal</button><button class="btn primary" value="reset">Reset demo</button></form></dialog>
-  <dialog id="celebration-dialog" class="celebration-dialog" aria-labelledby="celebration-title"><div id="confetti" aria-hidden="true"></div><div id="success-icon" class="success-icon"></div><h2 id="celebration-title">Misi selesai!</h2><strong id="celebration-reward"></strong><p id="celebration-copy"></p><form method="dialog"><button class="btn primary">Lihat skor</button></form></dialog>
+  <dialog id="celebration-dialog" class="celebration-dialog" aria-labelledby="celebration-title"><div id="confetti" aria-hidden="true"></div><div id="success-icon" class="success-icon"></div><h2 id="celebration-title">Misi selesai!</h2><strong id="celebration-score"></strong><p id="celebration-copy"></p><form method="dialog"><button class="btn primary">Lihat skor</button></form></dialog>
 </body></html>
