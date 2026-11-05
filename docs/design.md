@@ -1,19 +1,27 @@
-# Greener — rancangan prototype yang disetujui
+# Greener — mobile-only prototype
 
-Satu admin menilai satu kantor; tanpa login atau backend. Lima halaman: Dashboard, Penilaian, Hasil, Rencana perbaikan, Riwayat. UI bahasa Indonesia, desktop dan ponsel, warna hijau.
+## Direction approved 5 November 2026
 
-Lima kategori (energi, air, sampah, kertas, transportasi), masing-masing tiga pertanyaan positif. Belum = 0, Sebagian = 50, Sudah = 100. Semua wajib dijawab. Setiap kategori berbobot sama; skor kategori adalah rata-rata tiga jawaban dan skor total rata-rata lima kategori. Angka tampilan dibulatkan; perhitungan memakai angka asli. Skor simulasi, bukan sertifikasi atau pengukuran emisi.
+A centered white app frame, max-width 430 px on phones and desktops. One admin, one office, Indonesian UI, no login, browser-local storage. Five views and three bottom tabs (Beranda, Aksi, Riwayat). Assessment and results open from Home; results also open from History. No illustrations, mascot, achievement collection, or illustration placeholders.
 
-Penilaian bulanan mengikuti waktu Asia/Jakarta. Satu catatan per bulan; hanya bulan berjalan yang dapat diedit. Riwayat dapat dilihat kembali. Demo awal berisi tiga bulan sebelumnya. Tiga saran dipilih dari jawaban bernilai paling rendah; urutan pertanyaan memecahkan nilai seri. Jika semua praktik sudah dilakukan, tidak ada rekomendasi tertunda. Tindakan selesai disimpan per penilaian dan tidak mengubah skor. Saat mengedit, pertahankan penyelesaian hanya untuk jawaban yang tidak berubah.
+Typography uses Nunito: headings 28–32 px; questions 24–26 px; buttons 18 px; answers 20 px; supporting content 16 px. Touch controls have at least 56 px height. White canvas, green raised primary buttons, blue selected answers, thick rounded borders. Hugeicons Stroke Rounded subset is vendored locally with license.
 
-Penyimpanan memakai localStorage dengan validasi data dan pemberitahuan jika penyimpanan gagal. Draf tetap tersedia saat berganti halaman atau memuat ulang. Reset memerlukan dialog konfirmasi dan memulihkan data contoh. Tidak ada integrasi eksternal, peran tambahan, atau dashboard emisi.
+## Flow
 
-Validasi: tes perhitungan, kelengkapan, urutan prioritas, dan data contoh; pemeriksaan browser untuk input, simpan, riwayat, persistensi, reset, dan tata letak ponsel.
+Home: one mission card with resume button and progress; latest score opens Results; compact XP in the header. Assessment: one short question per screen, category and question count, three neutral answers (Belum, Sebagian, Sudah), optional example, Back, Close, fixed Continue button. The bottom navigation is hidden during assessment. Answers survive Back, Close, and refresh. Resume starts at the first unanswered question. Category URLs from the previous UI continue to work.
 
-## Redesign playful — 5 November 2026
+Results: one large score, five expandable category rows, one action CTA. Actions: three short checklist items with expandable instructions. History: compact month/score rows. Reset and XP explanation live behind the header menu.
 
-Menggunakan referensi Duolingo dari Mobbin MCP: [jalur misi](https://mobbin.com/screens/02544e61-aefd-4d89-815e-ffcc83d83539), [perayaan selesai](https://mobbin.com/screens/92705902-10f2-4dd7-b46f-21fe7732cfff), dan [Refero style](https://styles.refero.design/style/7088d695-362b-4e09-b325-fa8136d4f350). Canvas putih, Nunito, hijau cerah, aksen biru, border tebal, tombol timbul. Maskot tunas adalah ilustrasi SVG orisinal untuk Greener.
+## Data and scoring
 
-Lima halaman tetap. Penilaian memakai lima tahap kategori, masing-masing tiga pertanyaan. Navigasi tahap dan draf dapat dilanjutkan tanpa kehilangan jawaban. XP dihitung dari jumlah catatan bulanan (50 XP masing-masing) dan tindakan prioritas yang selesai (10 XP masing-masing); mengedit bulan yang sama tidak menambah XP. Membatalkan tindakan menyesuaikan XP. XP terpisah dari skor green office, termasuk pada data contoh. Level 1 di bawah 150 XP, level 2 dari 150, level 3 dari 300. Tiga pencapaian berasal dari satu penilaian, tiga bulan tercatat, dan satu tindakan selesai.
+Fifteen positive practices, three each for energy, water, waste, paper, transport. Values are 0/50/100 with equally weighted categories. No point values are shown while answering. Completing any assessment earns the same monthly XP. Every answer is required before saving. One assessment per month; edit current month only; previous months remain readable. Existing storage keys and records stay compatible.
 
-Microinteractions: tombol tertekan, pilihan jawaban memantul singkat saat interaksi pointer, progres via transform, feedback Tunas, konfirmasi misi selesai dengan confetti dan dialog hasil. Tidak ada animasi loop atau audio otomatis. Semua motion dinonaktifkan saat prefers-reduced-motion.
+XP = 50 per monthly record + 10 per completed priority action, independently of green office score. Editing a monthly record does not multiply XP. Marking actions complete does not change the environmental score. Initial demo contains the preceding three months. Score is a simulation, not certification or measured emissions.
+
+## Motion and validation
+
+Buttons depress on press; pointer answer selections pop briefly; progress uses transforms; submission confirms with a compact dialog and short confetti. No illustration in the completion state. All animation and transitions are disabled for reduced motion.
+
+Validate scoring/XP invariants, question resume and legacy links, one-question flow, draft persistence, Back and Close, final save/edit, action expansion and toggles, 320/390/430 px layouts, and centered desktop width.
+
+Style source: [Refero Duolingo](https://styles.refero.design/style/7088d695-362b-4e09-b325-fa8136d4f350). Previous Mobbin research: [learning path](https://mobbin.com/screens/02544e61-aefd-4d89-815e-ffcc83d83539), [completion feedback](https://mobbin.com/screens/92705902-10f2-4dd7-b46f-21fe7732cfff).

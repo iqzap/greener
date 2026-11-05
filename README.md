@@ -1,6 +1,8 @@
 # Greener
 
-Prototype green office tracker, bahasa Indonesia. Lima tampilan, form lima tahap, 15 pertanyaan, skor simulasi 0–100, tiga prioritas perbaikan, dan riwayat bulanan. Data dan draf tersimpan di localStorage browser. Tanpa backend dan tanpa login aplikasi. Tampilan playful terinspirasi Duolingo, dengan maskot Tunas, jalur misi, badge, XP, dan perayaan hasil. XP aktivitas terpisah dari skor kantor; mengedit penilaian tidak menggandakan XP. Mendukung prefers-reduced-motion.
+Prototype green office tracker berbahasa Indonesia. Layout khusus ponsel (maksimum 430 px), termasuk saat dibuka di desktop.
+
+Lima tampilan: Beranda, Penilaian, Hasil, Aksi, Riwayat. Tiga tab: Beranda, Aksi, Riwayat. Penilaian menampilkan satu dari 15 pertanyaan per layar. Contoh, detail kategori, dan petunjuk aksi dibuka saat dibutuhkan. Tidak ada ilustrasi atau placeholder ilustrasi.
 
 ## Jalankan
 
@@ -8,6 +10,8 @@ Prototype green office tracker, bahasa Indonesia. Lima tampilan, form lima tahap
 
 ## Validasi
 
-`npm test` menguji bobot kategori, rentang skor, input tidak lengkap, prioritas, data contoh lintas tahun, dan penyelesaian tindakan.
+`npm test` memeriksa skor, prioritas, XP, dan navigasi/resume pertanyaan.
 
-File aplikasi berada di `dist/`; dapat dihosting sebagai situs statis. Font Google bersifat opsional dengan fallback lokal. Bulan penilaian menggunakan zona waktu Asia/Jakarta. Skor mengukur jawaban checklist, bukan emisi aktual atau sertifikasi lingkungan.
+Data dan draf memakai localStorage dengan kunci yang sama seperti versi sebelumnya. Skor 0–100 dari lima kategori berbobot sama. XP aktivitas terpisah: 50 per catatan bulanan, 10 per aksi prioritas selesai. Edit bulan yang sama tidak menggandakan XP.
+
+File aplikasi berada di `dist/`; dapat dihosting sebagai situs statis. Font Nunito dari Google dengan fallback lokal. Ikon memakai subset Hugeicons Stroke Rounded dari `@hugeicons/core-free-icons` 4.4.0; lisensi di `dist/hugeicons-LICENSE.md`. Mendukung `prefers-reduced-motion`. Bulan penilaian memakai Asia/Jakarta.
