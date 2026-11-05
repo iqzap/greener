@@ -8,6 +8,8 @@ Lima tampilan: Beranda, Penilaian, Hasil, Aksi, Riwayat. Tiga tab: Beranda, Aksi
 
 `npm run dev` lalu buka http://localhost:4173. Tidak perlu instalasi dependensi.
 
+GitHub Pages memakai `npm run build:pages` dan menerbitkan `build/pages/`. Build menambahkan versi rilis pada URL JavaScript, semua impor modul lokal, dan CSS agar browser tidak mencampur file cache lama dengan halaman baru.
+
 ## Validasi
 
 `npm test` memeriksa skor, prioritas, dan navigasi/resume pertanyaan.

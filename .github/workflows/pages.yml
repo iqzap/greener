@@ -6,6 +6,8 @@ on:
     paths:
       - 'dist/**'
       - '.github/workflows/pages.yml'
+      - 'scripts/build-pages.mjs'
+      - 'package.json'
   workflow_dispatch:
 
 permissions:
@@ -26,9 +28,13 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: actions/configure-pages@v5
+      - name: Test
+        run: npm test
+      - name: Version site assets
+        run: npm run build:pages
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: dist
+          path: build/pages
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
