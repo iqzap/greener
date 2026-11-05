@@ -2,7 +2,7 @@
 
 Prototype green office tracker berbahasa Indonesia. Layout khusus ponsel (maksimum 430 px), termasuk saat dibuka di desktop.
 
-Lima tampilan: Beranda, Penilaian, Hasil, Aksi, Riwayat. Tiga tab: Beranda, Aksi, Riwayat. Penilaian menampilkan satu dari 15 pertanyaan per layar. Contoh, detail kategori, dan petunjuk aksi dibuka saat dibutuhkan. Tidak ada ilustrasi atau placeholder ilustrasi.
+Enam tampilan mencakup layar sambutan, Beranda, Penilaian, Hasil, Aksi, dan Riwayat. Tiga tab mengarah ke Beranda, Aksi, dan Riwayat. Penilaian menampilkan satu dari 15 pertanyaan per layar. Contoh, detail kategori, dan petunjuk aksi dibuka saat dibutuhkan. Sprout punya tujuh pose untuk sambutan, bantuan, hasil, dan umpan balik.
 
 ## Jalankan
 

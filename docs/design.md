@@ -2,7 +2,7 @@
 
 ## Direction approved 5 November 2026
 
-A centered white app frame, max-width 430 px on phones and desktops. One admin, one office, Indonesian UI, no login, browser-local storage. Five views and three bottom tabs (Beranda, Aksi, Riwayat). Assessment and results open from Home; results also open from History. No illustrations, mascot, achievement collection, or illustration placeholders.
+A centered white app frame, max-width 430 px on phones and desktops. One admin, one office, Indonesian UI, no login, browser-local storage. Six views and three bottom tabs (Beranda, Aksi, Riwayat). The root URL opens the splash screen, and direct route links go to their destination. Assessment and results open from Home. Results also open from History.
 
 Typography uses Nunito: headings 28–32 px; questions 24–26 px; buttons 18 px; answers 20 px; supporting content 16 px. Touch controls have at least 56 px height. White canvas, green raised primary buttons, blue selected answers, thick rounded borders. Hugeicons Stroke Rounded subset is vendored locally with license.
 
@@ -20,7 +20,7 @@ The green office score is the only score. Marking actions complete does not chan
 
 ## Motion and validation
 
-Buttons depress on press; pointer answer selections pop briefly; progress uses transforms; submission confirms with a compact dialog and short confetti. No illustration in the completion state. All animation and transitions are disabled for reduced motion.
+Buttons depress on press, pointer answer selections pop briefly, and progress uses transforms. Submission confirms with Sprout, the green score, and short confetti. Sprout also appears on the splash screen, Home, expanded question examples, Results, and action completion feedback. Results use the encouraging pose below 70 and the proud pose at 70 or above. All animation and transitions are disabled for reduced motion.
 
 Validate scoring invariants, question resume and legacy links, one-question flow, draft persistence, Back and Close, final save/edit, action expansion and toggles, 320/390/430 px layouts, and centered desktop width.
 
