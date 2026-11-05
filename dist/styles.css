@@ -69,10 +69,19 @@
 .mascot-help { --mascot-size: 60px; }
 
 .result-score-visual {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  width: 100%;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
+  gap: 8px;
+}
+
+.result-score-visual .score-ring { grid-column: 2; }
+
+.result-score-visual .mascot {
+  grid-column: 3;
+  justify-self: center;
+  max-width: 100%;
 }
 
 .mascot-complete { --mascot-size: min(148px, 26svh); }
