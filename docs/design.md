@@ -2,7 +2,7 @@
 
 ## Direction approved 5 November 2026
 
-A centered white app frame, max-width 430 px on phones and desktops. One admin, one office, Indonesian UI, no login, browser-local storage. Six views and three bottom tabs (Beranda, Aksi, Riwayat). The root URL opens the splash screen, and direct route links go to their destination. Assessment and results open from Home. Results also open from History.
+A centered white app frame, max-width 430 px on phones and desktops. One admin, one office, Indonesian UI, no login, browser-local storage. Seven views and four illustrated bottom tabs (Beranda, Aksi, Riwayat, Profil). Each tab has an accessible name and the active tab has a pale green highlight. The root URL opens the splash screen, and direct route links go to their destination. Assessment and results open from Home. Results also open from History. The optional profile form saves user and company details in the browser.
 
 Typography uses Nunito: headings 28–32 px; questions 24–26 px; buttons 18 px; answers 20 px; supporting content 16 px. Touch controls have at least 56 px height. White canvas, green raised primary buttons, blue selected answers, thick rounded borders. Hugeicons Stroke Rounded subset is vendored locally with license.
 

@@ -4,6 +4,7 @@ import { questionCopy, nextUnanswered, questionIndex } from './mobile.mjs';
 
 const $ = s => document.querySelector(s);
 const STORE = 'greener-office-v1', DRAFT = 'greener-draft-v1';
+const PROFILE = 'greener-profile-v1';
 const answerLabels = { 0: 'Belum', 50: 'Sebagian', 100: 'Sudah' };
 const ordered = () => [...records].sort((a,b) => a.month.localeCompare(b.month));
 const latest = () => ordered().at(-1);
@@ -92,8 +93,38 @@ function historyPage() {
   return `${title('Perjalanan kita',`${data.length} bulan tercatat`)}<div class="history-list">${data.map(r=>`<a class="history-row" href="#hasil/${r.month}"><span><strong>${monthName(r.month)}</strong><small>${r.demo?'Data contoh':'Penilaian kantor'}</small></span><span class="history-score">${Math.round(scores(r.answers).total)}</span>${icon('arrow')}</a>`).join('')}</div><span class="fine-note">Ketuk bulan untuk melihat hasil.</span>`;
 }
 
-const pages = { splash:'Selamat datang', dashboard:'Beranda', penilaian:'Misi bulanan', hasil:'Skor kantor', perbaikan:'Aksi', riwayat:'Riwayat' };
-const nav = [['dashboard','home','Beranda'],['perbaikan','task','Aksi'],['riwayat','history','Riwayat']];
+function profilePage() {
+  return `${title('Profil', 'Lengkapi detailmu dan perusahaanmu.')}
+    <form id="profile-form" class="profile-form">
+      <section class="profile-card" aria-labelledby="user-profile-title">
+        <div class="profile-card-heading">
+          <div class="profile-avatar" aria-hidden="true"><img src="./nav/profil.svg" alt="" width="42" height="42"></div>
+          <h2 id="user-profile-title">Profil pengguna</h2>
+        </div>
+        <label>Nama lengkap<input name="name" autocomplete="name" maxlength="100"></label>
+        <label>Jabatan<input name="jobTitle" autocomplete="organization-title" maxlength="100"></label>
+      </section>
+      <section class="profile-card" aria-labelledby="company-profile-title">
+        <h2 id="company-profile-title">Profil perusahaan</h2>
+        <label>Nama perusahaan<input name="company" autocomplete="organization" maxlength="120"></label>
+        <label>Industri<input name="industry" maxlength="100"></label>
+        <label>Lokasi kantor<input name="location" maxlength="120"></label>
+        <label>Jumlah karyawan<input name="employeeCount" type="number" inputmode="numeric" min="1" step="1"></label>
+      </section>
+      <button class="btn primary" type="submit">Simpan</button>
+      <p class="fine-note">Profil disimpan di browser ini.</p>
+    </form>`;
+}
+
+function updateProfileAvatar(name) {
+  const initials = name.trim().split(/\s+/).slice(0, 2).map(word => Array.from(word)[0] || '').join('');
+  const avatar = $('.profile-avatar');
+  if (initials) avatar.textContent = initials;
+  else avatar.innerHTML = '<img src="./nav/profil.svg" alt="" width="42" height="42">';
+}
+
+const pages = { splash:'Selamat datang', dashboard:'Beranda', penilaian:'Misi bulanan', hasil:'Skor kantor', perbaikan:'Aksi', riwayat:'Riwayat', profil:'Profil' };
+const nav = [['dashboard','beranda','Beranda'],['perbaikan','aksi','Aksi'],['riwayat','riwayat','Riwayat'],['profil','profil','Profil']];
 function render() {
   const [route, segment] = (location.hash.slice(1)||'splash').split('/');
   const page = Object.hasOwn(pages,route) ? route : 'dashboard';
@@ -104,16 +135,30 @@ function render() {
   $('#navigation').hidden = immersive;
   $('#main').className = immersive ? `${page === 'splash' ? 'splash' : 'quiz'}-page` : `page ${page}-page`;
   document.title=`${pages[page]} — Greener`;
-  const active=page==='perbaikan'?'perbaikan':page==='riwayat'?'riwayat':'dashboard';
-  $('#navigation').innerHTML=nav.map(([route,name,label])=>`<a href="#${route}" ${active===route?'aria-current="page"':''}>${icon(name)}<span>${label}</span></a>`).join('');
+  const active = page === 'hasil' ? 'dashboard' : page;
+  $('#navigation').innerHTML = nav.map(([route, name, label]) => `
+    <a href="#${route}" aria-label="${label}" title="${label}" ${active === route ? 'aria-current="page"' : ''}>
+      <img src="./nav/${name}.svg" alt="" width="36" height="36">
+    </a>`).join('');
   let html;
   if (page === 'splash') html = splash();
   else if (quiz) { currentQuestion=questionIndex(segment,draft);html=assessment(); }
   else if (page==='hasil'||page==='perbaikan') {
     const record=segment?records.find(r=>r.month===segment):latest();
     html=record?(page==='hasil'?result(record):actions(record)):`${title('Belum ada hasil','Mulai dari misi pertamamu.')}${actionLink('Mulai misi','penilaian')}`;
-  } else html=page==='riwayat'?historyPage():home();
+  } else if (page === 'riwayat') html = historyPage();
+  else if (page === 'profil') html = profilePage();
+  else html = home();
   $('#main').innerHTML=(storageWarning?'<p class="storage-warning" role="alert">Data belum bisa disimpan di browser ini.</p>':'')+html;
+  if (page === 'profil') {
+    const form = $('#profile-form');
+    let saved;
+    try { saved = JSON.parse(localStorage.getItem(PROFILE)); } catch { saved = null; }
+    for (const input of form.querySelectorAll('input')) {
+      if (typeof saved?.[input.name] === 'string') input.value = saved[input.name];
+    }
+    updateProfileAvatar(form.elements.name.value);
+  }
 }
 function goQuestion(index) {
   window.history.replaceState(null,'',`#penilaian/${index+1}`);
@@ -178,6 +223,15 @@ document.addEventListener('change',e=>{
   }
 });
 document.addEventListener('submit',e=>{
+  if (e.target.id === 'profile-form') {
+    e.preventDefault();
+    const details = Object.fromEntries(Array.from(new FormData(e.target), ([key, value]) => [key, value.trim()]));
+    if (write(PROFILE, details)) {
+      updateProfileAvatar(details.name);
+      toast('Profil tersimpan.');
+    }
+    return;
+  }
   if(e.target.id!=='assessment-form')return;e.preventDefault();
   const q=questions[currentQuestion];
   if(draft[q.id]===undefined){$('#form-error').textContent='Pilih satu jawaban dulu.';$('#assessment-form input').focus();return;}
