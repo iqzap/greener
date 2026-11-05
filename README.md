@@ -1,6 +1,6 @@
 # Greener
 
-Prototype green office tracker, bahasa Indonesia. Lima tampilan, 15 pertanyaan, skor simulasi 0–100, tiga prioritas perbaikan, dan riwayat bulanan. Data dan draf tersimpan di localStorage browser. Tanpa backend dan tanpa login aplikasi.
+Prototype green office tracker, bahasa Indonesia. Lima tampilan, form lima tahap, 15 pertanyaan, skor simulasi 0–100, tiga prioritas perbaikan, dan riwayat bulanan. Data dan draf tersimpan di localStorage browser. Tanpa backend dan tanpa login aplikasi. Tampilan playful terinspirasi Duolingo, dengan maskot Tunas, jalur misi, badge, XP, dan perayaan hasil. XP aktivitas terpisah dari skor kantor; mengedit penilaian tidak menggandakan XP. Mendukung prefers-reduced-motion.
 
 ## Jalankan
 

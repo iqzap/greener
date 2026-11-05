@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f8f4"><meta name="description" content="Kenali kebiasaan kantor Anda, ukur langkah hijau, dan temukan perbaikan yang bisa dimulai hari ini.">
+  <meta name="theme-color" content="#ffffff"><meta name="description" content="Kenali kebiasaan kantor Anda, ukur langkah hijau, dan temukan perbaikan yang bisa dimulai hari ini.">
   <title>Greener — Green Office Tracker</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232f654a'/%3E%3Cpath d='M9 23C8 10 17 8 24 8c0 11-6 15-15 15Zm1-1 10-10' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./styles.css"><script type="module" src="./app.js"></script>
@@ -12,11 +12,12 @@
   <aside class="sidebar">
     <a class="brand" href="#dashboard" aria-label="Greener, beranda"><span class="brand-mark" id="brand-icon"></span>greener<span class="brand-dot">.</span></a>
     <div class="workspace"><span class="workspace-icon" id="office-icon"></span><div><strong>Kantor kita</strong><span>Green office workspace</span></div><span class="workspace-dot"></span></div>
-    <p class="nav-label">WORKSPACE</p><nav aria-label="Navigasi utama" id="navigation"></nav>
+    <p class="nav-label">AYO, BERTUMBUH!</p><nav aria-label="Navigasi utama" id="navigation"></nav>
     <div class="sidebar-bottom"><div class="sidebar-note"><span id="note-icon"></span><strong>Perubahan dimulai dari kita.</strong><p>Kebiasaan kecil hari ini, kantor yang lebih baik esok hari.</p></div><button class="reset-button" id="reset-demo">↻ <span>Reset data demo</span></button><div class="profile"><span class="avatar">AD</span><div><strong>Admin kantor</strong><span>Workspace demo</span></div><span class="profile-dot"></span></div></div>
   </aside>
-  <div class="app-shell"><header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumb">Dashboard</strong></div><div class="topbar-right"><span class="demo-label"><i></i> Mode prototype</span><span class="top-avatar">AD</span></div></header><main id="main" tabindex="-1"></main><footer><span>greener. <span class="footer-divider">/</span> Langkah kecil untuk dampak yang lebih baik.</span><span>Skor simulasi · Bukan sertifikasi lingkungan</span></footer></div>
+  <div class="app-shell"><header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumb">Dashboard</strong></div><div class="topbar-right"><div id="game-stats" class="game-stats"></div><span class="demo-label"><i></i> Mode prototype</span><span class="top-avatar">AD</span></div></header><main id="main" tabindex="-1"></main><footer><span>greener. <span class="footer-divider">/</span> Langkah kecil untuk dampak yang lebih baik.</span><span>Skor simulasi · Bukan sertifikasi lingkungan</span></footer></div>
   <button class="mobile-reset" id="reset-demo-mobile">↻ Reset data demo</button>
+  <dialog id="celebration-dialog" aria-labelledby="celebration-title" class="celebration-dialog"><div id="confetti" class="confetti" aria-hidden="true"></div><div id="celebration-character"></div><h2 id="celebration-title"></h2><span id="celebration-reward" class="celebration-reward"></span><p id="celebration-copy"></p><form method="dialog"><button class="btn primary" value="close">LIHAT HASILKU →</button></form></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
-  <dialog id="reset-dialog"><form method="dialog"><span class="eyebrow">MULAI KEMBALI</span><h2>Reset data demo?</h2><p>Penilaian, draf, dan status tindakan di browser ini akan diganti dengan data contoh awal.</p><div class="dialog-actions"><button value="cancel" class="btn secondary">Batal</button><button value="reset" class="btn primary">Reset demo</button></div></form></dialog>
+  <dialog id="reset-dialog" aria-labelledby="reset-title"><form method="dialog"><span class="eyebrow">MULAI KEMBALI</span><h2 id="reset-title">Reset data demo?</h2><p>Penilaian, draf, dan status tindakan di browser ini akan diganti dengan data contoh awal.</p><div class="dialog-actions"><button value="cancel" class="btn secondary">Batal</button><button value="reset" class="btn primary">Reset demo</button></div></form></dialog>
 </body></html>
